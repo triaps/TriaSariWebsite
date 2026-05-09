@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tria Puspita Sari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5A8;
+    --gold-dark: #9A7B4F;
+    --cream: #F8F4EE;
+    --charcoal: #1A1814;
+    --mid: #4A4540;
+    --muted: #8A8278;
+    --white: #FFFFFF;
+    --rule: rgba(201,169,110,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--charcoal);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(26,24,20,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; letter-spacing: 0.18em;
+    color: var(--gold); text-transform: uppercase; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none; opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh; min-height: 700px;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    padding: 0 4rem 0 6rem;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 0.3em;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-divider {
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 2rem 0;
+  }
+  .hero-tagline {
+    font-size: 0.75rem; letter-spacing: 0.08em; line-height: 1.9;
+    color: var(--muted); max-width: 400px;
+  }
+  .hero-cta {
+    margin-top: 2.5rem; display: flex; gap: 1.5rem; align-items: center;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.35s;
+    position: relative; overflow: hidden;
+    display: inline-block;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute;
+    inset: 0; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .btn-primary:hover::before { transform: scaleX(1); }
+  .btn-primary:hover { color: var(--charcoal); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .hero-scroll {
+    font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted);
+    text-transform: uppercase; text-decoration: none;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-scroll::after {
+    content: ''; display: block; width: 1px; height: 28px;
+    background: var(--muted); animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.6); }
+  }
+
+  .hero-right {
+    position: relative; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-img-frame {
+    width: 420px; height: 560px;
+    position: relative;
+  }
+  .hero-img-frame::before {
+    content: ''; position: absolute;
+    top: 20px; left: 20px; right: -20px; bottom: -20px;
+    border: 1px solid var(--rule);
+    pointer-events: none; z-index: 0;
+  }
+  .hero-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    position: relative; z-index: 1;
+    filter: sepia(10%) contrast(1.05);
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    background: #1F1C17;
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-img-badge {
+    position: absolute; bottom: 2rem; left: -2rem; z-index: 2;
+    background: var(--charcoal);
+    border: 1px solid var(--rule);
+    padding: 1.2rem 1.5rem;
+    min-width: 200px;
+  }
+  .badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .badge-label {
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.4rem;
+  }
+
+  .hero-bg-lines {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 50%; pointer-events: none; z-index: 0;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 60px,
+      rgba(255,255,255,0.8) 60px, rgba(255,255,255,0.8) 61px
+    );
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 7rem 6rem; }
+  .section-eyebrow {
+    font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 30px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; color: var(--cream); margin-bottom: 1rem;
+  }
+  .section-rule {
+    width: 50px; height: 1px; background: var(--rule); margin-bottom: 2.5rem;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: #141210; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 6rem; align-items: start; margin-top: 3rem;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-wrap img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    filter: sepia(8%) contrast(1.05);
+  }
+  .about-img-wrap::after {
+    content: ''; position: absolute;
+    top: -15px; left: -15px;
+    width: 70%; height: 70%;
+    border-left: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+    pointer-events: none;
+  }
+  .about-text p {
+    font-size: 0.82rem; line-height: 2; color: rgba(248,244,238,0.72);
+    margin-bottom: 1.5rem;
+  }
+  .about-text p strong {
+    color: var(--gold); font-weight: 500;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 3rem;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .stat-item {
+    padding: 1.5rem;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.5rem; line-height: 1.6;
+  }
+
+  /* ── EXPERTISE ── */
+  .expertise { background: var(--charcoal); }
+  .expertise-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--rule);
+    margin-top: 3rem;
+    border: 1px solid var(--rule);
+  }
+  .expertise-card {
+    background: var(--charcoal);
+    padding: 2.5rem 2rem;
+    transition: background 0.35s;
+    position: relative; overflow: hidden;
+  }
+  .expertise-card::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .expertise-card:hover { background: #1F1C17; }
+  .expertise-card:hover::before { transform: scaleX(1); }
+  .card-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--rule);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .card-title {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .card-body {
+    font-size: 0.78rem; line-height: 1.85; color: rgba(248,244,238,0.6);
+  }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    padding: 6rem;
+    background: #0E0D0B;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-section::before, .quote-section::after {
+    content: '';
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 1px; background: var(--rule);
+  }
+  .quote-section::before { top: 0; height: 3rem; }
+  .quote-section::after { bottom: 0; height: 3rem; }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem; line-height: 0.5;
+    color: var(--rule); display: block;
+    margin-bottom: 1.5rem;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300; font-style: italic;
+    color: var(--cream); line-height: 1.6;
+    max-width: 800px; margin: 0 auto 2rem;
+  }
+  .quote-attr {
+    font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; padding: 0; min-height: 60vh;
+  }
+  .contact-left {
+    padding: 7rem 5rem;
+    background: #141210;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .contact-right {
+    padding: 7rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact-info-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ci-label {
+    font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); min-width: 70px; padding-top: 0.2rem;
+  }
+  .ci-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--cream); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .ci-value:hover { color: var(--gold); }
+  .connect-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; margin-bottom: 1rem;
+  }
+  .connect-body {
+    font-size: 0.78rem; line-height: 1.9; color: rgba(248,244,238,0.6);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 6rem;
+    background: #0A0906;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--rule);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; letter-spacing: 0.2em; color: var(--muted);
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted);
+    opacity: 0.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+  .fade-in:nth-child(2) { transition-delay: 0.15s; }
+  .fade-in:nth-child(3) { transition-delay: 0.3s; }
+  .fade-in:nth-child(4) { transition-delay: 0.45s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; height: auto; padding: 8rem 2rem 4rem; }
+    .hero-left { padding: 0; }
+    .hero-right { display: none; }
+    section { padding: 5rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; }
+    .contact-left, .contact-right { padding: 4rem 2rem; }
+    footer { padding: 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .quote-section { padding: 4rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Tria Puspita Sari</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-in visible">Civil Engineer · Business Developer</div>
+    <h1 class="hero-title fade-in visible">
+      Engineering<br>
+      a Better<br>
+      <em>Civil Society</em>
+    </h1>
+    <div class="hero-divider fade-in visible"></div>
+    <p class="hero-tagline fade-in visible">
+      Bridging structural foundations with business strategy — from Jakarta to Los Angeles, building legacies that endure.
+    </p>
+    <div class="hero-cta fade-in visible">
+      <a href="#about" class="btn-primary"><span>Discover More</span></a>
+      <a href="#contact" class="hero-scroll">Connect</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-frame">
+      <!-- Replace the src below with your own photo URL or a local file path -->
+      <img
+        src="https://lh3.googleusercontent.com/sitesv/AA5AbUCzyhYT4Kf27iGYqNQBHQUo_BrSDDJVqT8aYMDgswOPdh603LxTOxuhi5U3okRG_tEqvioLGc03dKykLBCeQYDIJVJeTUdLwrBoGOpr9mUym1C4iLDJJjfcPBti5RQfiooravicxG1ow6mL80auLD7361uBTZZ2z6gAsgQXiJve94vAk_JGaxlRgJoTh_VK4L4UR_NSGkxbRAOJx59ffY70vXJGyU37AdUk9UY=w1280"
+        alt="Tria Puspita Sari"
+        onerror="this.style.display='none'"
+      >
+      <div class="hero-img-badge">
+        <div class="badge-num">9+</div>
+        <div class="badge-label">Years of Global<br>Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-eyebrow fade-in">The Story</div>
+  <h2 class="section-title fade-in">A Foundation Built<br>on Excellence</h2>
+  <div class="section-rule fade-in"></div>
+  <div class="about-grid">
+    <div class="about-img-wrap fade-in">
+      <!-- Replace src with your own portrait photo -->
+      <img
+        src="https://lh3.googleusercontent.com/sitesv/AA5AbUDv_i1ETBa_ZfPP-W6FkwrDyRx2Wr5zOkpL7aPgHjSpTLnC-WZqKLBCe4BeV2Zjl1P_TF2emHtcMzDzMoROJQiO6_IOPR2mrtaNVNIWgQRxwe27ufbnqeR0qKSEZG4r6P4SNQ4=w1280"
+        alt="Tria Puspita Sari portrait"
+        onerror="this.style.background='#2A2620'; this.style.display='block'; this.style.aspectRatio='3/4';"
+      >
+    </div>
+    <div class="about-text fade-in">
+      <p>
+        Born and raised in the vibrant city of <strong>Jakarta, Indonesia</strong>, Tria Puspita Sari built her academic foundation at the prestigious <strong>University of Indonesia</strong>, earning her bachelor's degree in Civil Engineering.
+      </p>
+      <p>
+        Over nine transformative years, she commanded projects spanning <strong>Real Estate, Infrastructure, Oil &amp; Gas</strong>, and human development within the construction industry — cultivating a rare perspective that merges engineering precision with executive vision.
+      </p>
+      <p>
+        Driven by an insatiable pursuit of mastery, she relocated to <strong>Los Angeles, USA</strong> to pursue an MBA — bridging the technical rigour of civil engineering with the strategic acumen of global business development.
+      </p>
+      <p>
+        Today, Tria operates at the intersection of infrastructure and innovation, <strong>engineering business ecosystems</strong> that create lasting value for civil society.
+      </p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Years Professional Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Industry Sectors</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Countries &amp; Continents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="section-eyebrow fade-in">What I Do</div>
+  <h2 class="section-title fade-in">Areas of<br>Excellence</h2>
+  <div class="section-rule fade-in"></div>
+  <div class="expertise-grid fade-in">
+    <div class="expertise-card">
+      <div class="card-icon">I.</div>
+      <div class="card-title">Civil Engineering</div>
+      <p class="card-body">Structural analysis, project management, and technical oversight across large-scale real estate and infrastructure developments — built on a foundation of University of Indonesia excellence.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="card-icon">II.</div>
+      <div class="card-title">Business Development</div>
+      <p class="card-body">Strategic growth engineering for organisations seeking to scale intelligently. Translating complex technical realities into compelling business propositions that drive meaningful outcomes.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="card-icon">III.</div>
+      <div class="card-title">Oil &amp; Gas</div>
+      <p class="card-body">Deep sector experience navigating the intersection of energy infrastructure and project execution — delivering operational excellence in one of the world's most demanding industries.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="card-icon">IV.</div>
+      <div class="card-title">Real Estate</div>
+      <p class="card-body">End-to-end real estate project delivery — from feasibility and design coordination through to construction completion — with meticulous attention to quality and stakeholder value.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="card-icon">V.</div>
+      <div class="card-title">Human Development</div>
+      <p class="card-body">Research and initiative leadership in construction industry human capital — fostering capability, culture, and professional growth within technical organisations.</p>
+    </div>
+    <div class="expertise-card">
+      <div class="card-icon">VI.</div>
+      <div class="card-title">MBA Strategy</div>
+      <p class="card-body">Advanced business strategy and leadership skills forged through graduate study in Los Angeles — bringing a global, executive-level perspective to every engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <span class="quote-mark">"</span>
+  <p class="quote-text">A civil engineer turned business developer, engineering business for a better future of civil society.</p>
+  <span class="quote-attr">— Tria Puspita Sari</span>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <div class="section-eyebrow fade-in">Let's Connect</div>
+    <h2 class="section-title fade-in">Begin a<br>Conversation</h2>
+    <div class="section-rule fade-in"></div>
+    <div class="contact-info-item fade-in">
+      <span class="ci-label">LinkedIn</span>
+      <a href="https://www.linkedin.com/in/tria-puspita-sari/" class="ci-value" target="_blank">linkedin.com/in/tria-puspita-sari</a>
+    </div>
+    <div class="contact-info-item fade-in">
+      <span class="ci-label">Location</span>
+      <span class="ci-value">Los Angeles, California</span>
+    </div>
+    <div class="contact-info-item fade-in">
+      <span class="ci-label">Origin</span>
+      <span class="ci-value">Jakarta, Indonesia</span>
+    </div>
+    <div class="contact-info-item fade-in">
+      <span class="ci-label">Education</span>
+      <span class="ci-value">University of Indonesia · MBA, LA</span>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="connect-title fade-in">Open to<br>Opportunities</div>
+    <p class="connect-body fade-in">
+      Whether you are seeking a strategic partner for infrastructure development, a business consultant with deep technical roots, or simply wish to exchange ideas on the future of civil society — Tria welcomes the conversation.
+    </p>
+    <a href="https://www.linkedin.com/in/tria-puspita-sari/" class="btn-primary fade-in" target="_blank" style="align-self:flex-start"><span>Connect on LinkedIn</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Tria Puspita Sari</div>
+  <div class="footer-copy">© 2025 · All Rights Reserved</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
